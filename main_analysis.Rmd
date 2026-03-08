@@ -7,8 +7,20 @@ output: html_document
 
 ## Data Management & Wrangling
 
+### Data Import
+
 ```{r}
-# Import the dataset
-hints_data <- read.csv()
+# Import the dataset using a relative path
+hints_data <- read.csv("data/HINTSData_2020_clean.csv")
+# Preview the data to ensure it loaded correctly
+head(hints_data)
 ```
 
+### Data Cleaning
+
+```{r}
+# Check for missing values (NAs) by nesting the sum() and is.na() functions
+sum(is.na(hints_data))
+
+# Factor the categorical variables
+```
