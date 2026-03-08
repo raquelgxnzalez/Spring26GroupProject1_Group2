@@ -26,6 +26,11 @@ sum(is.na(hints_data))
 # Extract and replace the Quality Care data and use the factor() function to assign levels and labels to the data
 hints_data$QualityCare <- factor(hints_data$QualityCare, levels = c(1, 2, 3, 4, 5), labels = c("Excellent", "Very Good", "Good", "Fair", "Poor"), ordered = TRUE)
 
+# Extract and replace the BirthGender data and use the factor() function to assign levels and labels to the data
+hints_data$BirthGender <- factor(hints_data$BirthGender, levels = c(1, 2), labels = c("Male", "Female"), ordered = TRUE)
+
+# Extract and replace the smokeStat data and use the factor() function to assign levels and labels to the data
+
 # Extract and replace the RaceEthn5 data and use the factor() function to assign levels and labels to the data
 hints_data$RaceEthn5 <- factor(hints_data$RaceEthn5, levels = c(1, 2, 3, 4, 5), labels = c("Non-Hispanic White", "Non-Hispanic Black", "Hispanic", "Non-Hispanic Asian", "Non-Hispanic Other"), ordered = TRUE)
 ```
