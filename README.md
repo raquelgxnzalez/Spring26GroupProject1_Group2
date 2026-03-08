@@ -1,2 +1,2 @@
 # Spring26GroupProject1_Group2
-PUBH 422: This project analyzes selected variables from the 2020 HINTS dataset using R. 
+PUBH 422: Acting as a mock public health research team, the group will conduct an analysis of health data from the 2020 US National Cancer Institute Health Information National Trend Survey (HINTS) dataset using R. Using 8 variables of interest, (Age, average number of alcoholic drinks consumed per week, weekly minutes of moderate exercise performed, body mass index, quality of care received, birth gender, smoking status, and race/ ethnicity), we intend to summarize, graph, and interpret the data in the context of public health to the best of our ability.
