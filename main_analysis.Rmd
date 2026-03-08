@@ -1,0 +1,8 @@
+---
+title: "Group Project 1: Group 2"
+author: "Alyssa Bautista, Raquel Gonzalez, Celia Lopez, and Quynh Pham"
+date: "2026-03-08"
+output: html_document
+---
+
+
