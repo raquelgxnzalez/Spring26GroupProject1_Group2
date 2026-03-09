@@ -68,6 +68,21 @@ pie(race,
 # Display pie chart
 race
 ```
+```{r}
+# Create the age histogram
+hist(hints_clndata$Age,
+     main = "Distribution of Age",
+     xlab = "Age",
+     ylab = "Frequency")
+```
+
+```{r}
+# Create the BMI boxplot
+boxplot(hints_clndata$BMI,
+        main = "Distribution of BMI",
+        ylab = "BMI")
+```
+
 
 ### ggplot2 Visualization
 
