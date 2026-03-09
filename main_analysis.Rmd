@@ -55,6 +55,7 @@ hints_clndata <- subset(hints_data, select = c(HHID, PersonID, Age, AvgDrinksPer
 # Load packages
 library(ggplot2)
 ```
+Using ggplot2 to create charts depicting the distributions of the QualityCare and RaceEthn5 variables.
 
 ```{r}
 # Use ggplot2 to create a bar plot to display the QualityCare data
@@ -86,3 +87,26 @@ race_ethn_pop
 ```
 
 Interpretations: The majority of participants were Non-Hispanic White, followed by Hispanic. Overall, participants primarily received a "very good" quality of care, followed by "excellent" and "good".
+
+
+Using ggplot2 to create charts depicting the distributions of the Age and BMI variables.
+
+```{r}
+# Use ggplot2 to create a histogram to display the age data
+
+age_hist <- ggplot(hints_clndata, aes(x = Age)) +
+  # Set binwidth to 5 to manage the distribution of data and assign color and borders to the bins.
+  geom_histogram(binwidth = 5, fill = "thistle3", color = "mediumorchid4") + 
+  ggtitle("Age Distribution") +
+  # Center the title
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Age") + 
+  ylab("Frequency")
+# Display the histogram
+age_hist 
+```
+
+```{r}
+
+```
+
