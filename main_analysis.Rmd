@@ -1,0 +1,175 @@
+---
+title: "Group Project 1: Group 2"
+author: "Alyssa Bautista, Raquel Gonzalez, Celia Lopez, and Quynh Pham"
+date: "2026-03-08"
+output: html_document
+---
+
+## Data Management & Wrangling
+
+### Data Import
+
+```{r}
+# Import the dataset using a relative path
+hints_data <- read.csv("data/HINTSData_2020_clean.csv")
+# Preview the data to ensure it loaded correctly
+head(hints_data)
+```
+
+### Data Cleaning
+
+```{r}
+# Check for missing values (NAs) by nesting the sum() and is.na() functions
+sum(is.na(hints_data))
+
+# Factor the categorical variables
+# Extract and replace the Quality Care data and use the factor() function to assign levels and labels to the data
+hints_data$QualityCare <- factor(hints_data$QualityCare, levels = c(1, 2, 3, 4, 5), labels = c("Excellent", "Very Good", "Good", "Fair", "Poor"), ordered = TRUE)
+
+# Extract and replace the BirthGender data and use the factor() function to assign levels and labels to the data
+hints_data$BirthGender <- factor(hints_data$BirthGender, levels = c(1, 2), labels = c("Male", "Female"), ordered = TRUE)
+
+# Extract and replace the smokeStat data and use the factor() function to assign levels and labels to the data
+hints_data$smokeStat <- factor(hints_data$smokeStat, levels = c(1, 2, 3), labels = c("Current", "Former", "Never"), ordered = TRUE)
+
+# Extract and replace the RaceEthn5 data and use the factor() function to assign levels and labels to the data
+hints_data$RaceEthn5 <- factor(hints_data$RaceEthn5, levels = c(1, 2, 3, 4, 5), labels = c("Non-Hispanic White", "Non-Hispanic Black", "Hispanic", "Non-Hispanic Asian", "Non-Hispanic Other"), ordered = TRUE)
+
+```
+
+### Extracting Relevant Variables
+
+```{r}
+# Use the subset() function to create a new dataframe consisting of selected variables from the original HINTS dataset
+
+hints_clndata <- subset(hints_data, select = c(HHID, PersonID, Age, AvgDrinksPerWeek, WeeklyMinutesModerateExercise, BMI, QualityCare, BirthGender, smokeStat, RaceEthn5))
+```
+
+
+## Descriptive Analysis & Function Writing 
+
+### Statistical Summaries
+
+```{r}
+
+
+#Use attach function for more efficient coding
+attach(hints_clndata)
+
+```
+
+
+```{r}
+
+#Calculate the summary, mean, standard deviation, and variance of the AGE variable 
+summary(Age)
+
+
+mean(Age)
+
+
+sd(Age)
+
+
+var(Age)
+
+
+#The age range for the sample population in the dataset ranges from 18 to 100 years old, with the average mean age being about 55.59. The standard deviation of the age variable is 16.57902. Squaring the standard deviation gives a variance of 274.864.
+
+
+```
+
+```{r}
+#Calculate the summary, mean, standard deviation, and variance of the AVGDRINKSPERWEEK variable 
+summary(AvgDrinksPerWeek)
+
+
+mean(AvgDrinksPerWeek)
+
+
+sd(AvgDrinksPerWeek)
+
+
+var(AvgDrinksPerWeek)
+
+
+#The average mean amount of alcoholic drinks consumed by the sample population was about 3. The most drinks consumed by one person on average per week was 70, while the majority of the sample had 0 drinks on average per week.
+
+```
+
+
+
+```{r}
+
+#Calculate the summary, mean, standard deviation, and variance of the WEEKLYMINUTESMODERATEEXERCISE variable 
+summary(WeeklyMinutesModerateExercise)
+
+
+mean(WeeklyMinutesModerateExercise)
+
+
+sd(WeeklyMinutesModerateExercise)
+
+
+var(WeeklyMinutesModerateExercise)
+
+
+#While about a quarter of the sample population did not exercise moderately at all throughout the week, others were training for upwards of 4620 minutes, or 77 hours! Though not everyone trained so hard, as the average mean weekly minutes of moderate exercise was 161.8, or about 2.7 hours. The high value of the standard deviation, 271.1893,  indicates a wide range of values throughout the variable. 
+
+```
+
+
+```{r}
+
+#Calculate the summary, mean, standard deviation, and variance of the BMI variable 
+summary(BMI)
+
+
+mean(BMI)
+
+
+sd(BMI)
+
+
+var(BMI)
+
+
+#The average mean BMI for the sample population was 28.6, the lowest BMI being 10.9 and the highest being 73.8. A BMI of 73.8 is considered morbidly obese, whereas a BMI of 10.9 is considered severely underweight. The majority of people fell into the "healthy" or "overweight" category.   
+
+
+
+```
+
+
+### Writing functions
+
+
+```{r}
+#Write a single function to display the results of the statistical summaries in B.1
+
+my_summary_func<- function(x){
+  return(summary(x))
+}
+
+
+```
+
+
+```{r}
+
+#Display function of the statistical summaries in B.1
+my_summary_func(Age)
+
+
+my_summary_func(AvgDrinksPerWeek)
+
+
+my_summary_func(WeeklyMinutesModerateExercise)
+
+
+my_summary_func(BMI)
+
+
+```
+
+
