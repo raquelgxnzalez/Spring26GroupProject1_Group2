@@ -165,13 +165,11 @@ var(BMI)
 
 
 #The average mean BMI for the sample population was 28.6, the lowest BMI being 10.9 and the highest being 73.8. A BMI of 73.8 is considered morbidly obese, whereas a BMI of 10.9 is considered severely underweight. The majority of people fell into the "healthy" or "overweight" category.   
-
-
-
 ```
+
 ```{r}
 #part 3
-my_summary_func <- function(data, variable)
+my_summary_func <- function(data, variable) {
 
   values <- data[[variable]]
 
@@ -187,10 +185,12 @@ my_summary_func <- function(data, variable)
   )
 
   return(results)
+}
+```
+
+```{r}
 #writing the functions
 
-```
-```{r}
 my_summary_func(hints, "Age")
 
 my_summary_func(hints, "AvgDrinksPerWeek")
@@ -199,9 +199,9 @@ my_summary_func(hints, "WeeklyMinutesModerateExercise")
 
 my_summary_func(hints, "BMI")
 #running the function on variables
-```
-```{r}
+
 #interpretation:The custom function my_summary_func was created to automate the calculation of descriptive statistics for continuous variables. The function returns the five-number summary, mean, standard deviation, and variance for any selected variable in the data set. This allows the same statistical summaries to be quickly generated for multiple variables such as Age, BMI, alcohol consumption, and exercise levels.
+
 ```
 
 
