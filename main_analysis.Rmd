@@ -45,3 +45,27 @@ hints_data$RaceEthn5 <- factor(hints_data$RaceEthn5, levels = c(1, 2, 3, 4, 5), 
 hints_clndata <- subset(hints_data, select = c(HHID, PersonID, Age, AvgDrinksPerWeek, WeeklyMinutesModerateExercise, BMI, QualityCare, BirthGender, smokeStat, RaceEthn5))
 ```
 
+## Univariate Visualization
+
+### Base R Visualization
+
+### ggplot2 Visualization
+
+```{r}
+# Load packages
+library(ggplot2)
+```
+
+```{r}
+# Create a bar plot to display the QualityCare data
+qualcare_bar <- ggplot(hints_clndata, aes(x = QualityCare)) +
+  geom_bar(fill = "hotpink4", color = "palevioletred1") +
+  ggtitle("Quality of Care Distribution") + 
+  # Center the title
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Quality of Care") +
+  ylab("Frequency")
+
+qualcare_bar
+```
+
