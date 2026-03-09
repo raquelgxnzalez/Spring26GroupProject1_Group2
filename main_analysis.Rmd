@@ -107,6 +107,18 @@ age_hist
 ```
 
 ```{r}
+# Use ggplot2 to create a density plot to display the BMI distribution
 
+bmi_dens <- ggplot(hints_clndata, aes(x = BMI)) +
+  # Assign a color to fill the chart and the color for the outline. Set opacity to 0.5, so you can see the chart markings
+  geom_density(color = "darkcyan", fill = "powderblue", alpha = 0.5) + 
+  ggtitle("Density Plot of BMI Distribution") +
+  # Center the title
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("BMI") + 
+  ylab("Density")
+# Display the density plot
+bmi_dens 
 ```
 
+Interpretations: The majority of participants were clustered around the 50-75 age group. The histogram is slightly skewed to the right, but there is a wide distribution of ages, mostly 75 and younger. The majority of participants had a BMI at about 25, and all BMI values generally lied between 20-40. The BMI distribution is right skewed, with values above 40 being outliers. 
