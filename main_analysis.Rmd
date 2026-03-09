@@ -122,3 +122,33 @@ bmi_dens
 ```
 
 Interpretations: The majority of participants were clustered around the 50-75 age group. The histogram is slightly skewed to the right, but there is a wide distribution of ages, mostly 75 and younger. The majority of participants had a BMI at about 25, and all BMI values generally lied between 20-40. The BMI distribution is right skewed, with values above 40 being outliers. 
+
+### Univariate Visualization Function
+
+Create a single R function that creates univariate distributions for QualityCare and RaceEthn5
+
+```{r}
+my_visual_func_I <- function(hints_clndata){
+  # Create a table to create a vector of values as input, opposed to raw categorical data
+  care_counts <- table(hints_clndata$QualityCare)
+  care_plot <- barplot(care_counts, main = "Quality of Care Distribution", xlab = "Quality of Care", ylab = "Frequency", col = "orchid4", border = "mediumorchid4")
+  # Display the bar plot
+  print(care_plot)
+  # Create a new window, so both plots are displayed
+  dev.new()
+  # Create a table to create a vector of values for the pie chart percentage creation
+  ethn_counts <- table(hints_clndata$RaceEthn5)
+  # Create the percentages for the pie chart
+  ethn_percent <- round(100 * ethn_counts/sum(ethn_counts), 1) 
+  # Create a vector of colors for each slice of the pie chart
+  my_colors <- c("mediumaquamarine","mediumturquoise", "lightskyblue","steelblue1","midnightblue")
+  ethn_plot <- pie(ethn_counts, labels = ethn_percent, main = "Pie Chart of Ethnic Distribution", col = my_colors, radius = 0.8)
+  # Shift legend slightly and remove the border around it so it doesn't block the pie chart
+  legend("topright", inset = c(-0.1, 0), legend = names(ethn_counts), cex = 0.8, fill = my_colors, bty = "n")
+ # Display the pie chart
+  print(ethn_plot) 
+}
+# Execute the function using the HINTS dataset
+my_visual_func_I(hints_clndata)
+```
+
