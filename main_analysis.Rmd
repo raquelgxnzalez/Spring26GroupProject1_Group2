@@ -49,12 +49,24 @@ hints_clndata <- subset(hints_data, select = c(HHID, PersonID, Age, AvgDrinksPer
 
 ### Base R Visualization
 
+```{r}
+# Create a bar plot for Quality Care 
+qc <- table(hints_clndata$QualityCare)
+barplot(qc,
+        main = "Distribution of QualityCare",
+        xlab = "QualityCare",
+        ylab = "Count")
+# Display the bar plot
+```
+
+
 ### ggplot2 Visualization
 
 ```{r}
 # Load packages
 library(ggplot2)
 ```
+
 Using ggplot2 to create charts depicting the distributions of the QualityCare and RaceEthn5 variables.
 
 ```{r}
