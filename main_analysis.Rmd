@@ -57,7 +57,7 @@ library(ggplot2)
 ```
 
 ```{r}
-# Create a bar plot to display the QualityCare data
+# Use ggplot2 to create a bar plot to display the QualityCare data
 qualcare_bar <- ggplot(hints_clndata, aes(x = QualityCare)) +
   geom_bar(fill = "hotpink4", color = "palevioletred1") +
   ggtitle("Quality of Care Distribution") + 
@@ -65,7 +65,24 @@ qualcare_bar <- ggplot(hints_clndata, aes(x = QualityCare)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   xlab("Quality of Care") +
   ylab("Frequency")
-
+# Display the chart
 qualcare_bar
 ```
 
+```{r}
+# Use ggplot2 to create a lollipop chart to display the RaceEthn5 data
+race_ethn_pop <- ggplot(hints_clndata, aes(x = RaceEthn5)) +
+  # Create the "lollipop stem"
+  geom_segment(aes(xend = RaceEthn5, yend = after_stat(count)), stat = "count", y = 0, color = "springgreen4") +
+  # Create the "lollipop head"
+  geom_point(stat = "count", size = 6, color = "palegreen1") +
+  ggtitle("Lollipop Chart of Ethnic Distributions") +
+  # Center the title
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Ethnicities") +
+  ylab("Frequency")
+# Display the chart
+race_ethn_pop
+```
+
+Interpretations: The majority of participants were Non-Hispanic White, followed by Hispanic. Overall, participants primarily received a "very good" quality of care, followed by "excellent" and "good".
