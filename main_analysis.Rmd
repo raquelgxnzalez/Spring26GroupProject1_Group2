@@ -152,3 +152,22 @@ my_visual_func_I <- function(hints_clndata){
 my_visual_func_I(hints_clndata)
 ```
 
+Create a single R function that creates univariate distributions for Age and BMI
+
+```{r}
+# Create chart labels, assign colors to fill and borders, and create 10 breaks for the histogram distribution.
+my_visual_func_II <- function(hints_clndata) {
+  hist(hints_clndata$Age, main = "Histogram of Age Distribution", xlab = "Age (Years)", ylab = "Frequency", col = "thistle", border = "mediumorchid4", breaks = 10)
+# Create a new window to display both charts
+  dev.new()
+# Create chart labels and assign colors to fill and the border of the plot using the polygon() function
+  bmi_density <- density(hints_clndata$BMI, main = "BMI Density Plot")
+  plot(bmi_density, main = "BMI Density Plot")
+  polygon(bmi_density, col = "powderblue", border = "darkcyan")
+# Display the density plot
+  print(bmi_density)
+}
+# Execute the function using the HINTS dataset
+my_visual_func_II(hints_clndata)
+```
+
