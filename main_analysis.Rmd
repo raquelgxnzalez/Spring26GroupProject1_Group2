@@ -68,6 +68,8 @@ pie(race,
 # Display pie chart
 race
 ```
+Interpretations: The bar plot shows how respondents rated the quality of care they received. Most responses fall in the higher quality categories. The pie chart shows the distribution of participants across RaceEthn5 groups. Some groups make up a larger portion of the sample than others.
+
 ```{r}
 # Create the age histogram
 hist(hints_clndata$Age,
@@ -83,6 +85,7 @@ boxplot(hints_clndata$BMI,
         ylab = "BMI")
 ```
 
+Interpretations: The histogram shows the distribution of age in the dataset. Most participants fall within the middle age range. The boxplot shows the spread of BMI values. A few points appear outside the main range, which may indicate outliers.
 
 ### ggplot2 Visualization
 
