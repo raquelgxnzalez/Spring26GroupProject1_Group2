@@ -173,3 +173,168 @@ my_summary_func(BMI)
 ```
 
 
+## Univariate Visualization
+
+### Base R Visualization
+
+```{r}
+# Create a bar plot for Quality Care 
+qc <- table(hints_clndata$QualityCare)
+barplot(qc,
+        main = "Distribution of QualityCare",
+        xlab = "QualityCare",
+        ylab = "Count")
+# Display the bar plot
+qc
+```
+
+```{r}
+# Create a RaceEthn5 pie chart
+race <- table(hints_clndata$RaceEthn5)
+pie(race,
+    main = "Distribution of RaceEthn5")
+# Display pie chart
+race
+```
+Interpretations: The bar plot shows how respondents rated the quality of care they received. Most responses fall in the higher quality categories. The pie chart shows the distribution of participants across RaceEthn5 groups. Some groups make up a larger portion of the sample than others.
+
+```{r}
+# Create the age histogram
+hist(hints_clndata$Age,
+     main = "Distribution of Age",
+     xlab = "Age",
+     ylab = "Frequency")
+```
+
+```{r}
+# Create the BMI boxplot
+boxplot(hints_clndata$BMI,
+        main = "Distribution of BMI",
+        ylab = "BMI")
+```
+
+Interpretations: The histogram shows the distribution of age in the dataset. Most participants fall within the middle age range. The boxplot shows the spread of BMI values. A few points appear outside the main range, which may indicate outliers.
+
+### ggplot2 Visualization
+
+```{r}
+# Load packages
+library(ggplot2)
+```
+
+Using ggplot2 to create charts depicting the distributions of the QualityCare and RaceEthn5 variables.
+
+```{r}
+# Use ggplot2 to create a bar plot to display the QualityCare data
+qualcare_bar <- ggplot(hints_clndata, aes(x = QualityCare)) +
+  geom_bar(fill = "hotpink4", color = "palevioletred1") +
+  ggtitle("Quality of Care Distribution") + 
+  # Center the title
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Quality of Care") +
+  ylab("Frequency")
+# Display the chart
+qualcare_bar
+```
+
+```{r}
+# Use ggplot2 to create a lollipop chart to display the RaceEthn5 data
+race_ethn_pop <- ggplot(hints_clndata, aes(x = RaceEthn5)) +
+  # Create the "lollipop stem"
+  geom_segment(aes(xend = RaceEthn5, yend = after_stat(count)), stat = "count", y = 0, color = "springgreen4") +
+  # Create the "lollipop head"
+  geom_point(stat = "count", size = 6, color = "palegreen1") +
+  ggtitle("Lollipop Chart of Ethnic Distributions") +
+  # Center the title
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Ethnicities") +
+  ylab("Frequency")
+# Display the chart
+race_ethn_pop
+```
+
+Interpretations: The majority of participants were Non-Hispanic White, followed by Hispanic. Overall, participants primarily received a "very good" quality of care, followed by "excellent" and "good".
+
+
+Using ggplot2 to create charts depicting the distributions of the Age and BMI variables.
+
+```{r}
+# Use ggplot2 to create a histogram to display the age data
+
+age_hist <- ggplot(hints_clndata, aes(x = Age)) +
+  # Set binwidth to 5 to manage the distribution of data and assign color and borders to the bins.
+  geom_histogram(binwidth = 5, fill = "thistle3", color = "mediumorchid4") + 
+  ggtitle("Age Distribution") +
+  # Center the title
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Age") + 
+  ylab("Frequency")
+# Display the histogram
+age_hist 
+```
+
+```{r}
+# Use ggplot2 to create a density plot to display the BMI distribution
+
+bmi_dens <- ggplot(hints_clndata, aes(x = BMI)) +
+  # Assign a color to fill the chart and the color for the outline. Set opacity to 0.5, so you can see the chart markings
+  geom_density(color = "darkcyan", fill = "powderblue", alpha = 0.5) + 
+  ggtitle("Density Plot of BMI Distribution") +
+  # Center the title
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("BMI") + 
+  ylab("Density")
+# Display the density plot
+bmi_dens 
+```
+
+Interpretations: The majority of participants were clustered around the 50-75 age group. The histogram is slightly skewed to the right, but there is a wide distribution of ages, mostly 75 and younger. The majority of participants had a BMI at about 25, and all BMI values generally lied between 20-40. The BMI distribution is right skewed, with values above 40 being outliers. 
+
+### Univariate Visualization Function
+
+Create a single R function that creates univariate distributions for QualityCare and RaceEthn5
+
+```{r}
+my_visual_func_I <- function(hints_clndata){
+  # Create a table to create a vector of values as input, opposed to raw categorical data
+  care_counts <- table(hints_clndata$QualityCare)
+  care_plot <- barplot(care_counts, main = "Quality of Care Distribution", xlab = "Quality of Care", ylab = "Frequency", col = "orchid4", border = "mediumorchid4")
+  # Display the bar plot
+  print(care_plot)
+  # Create a new window, so both plots are displayed
+  dev.new()
+  # Create a table to create a vector of values for the pie chart percentage creation
+  ethn_counts <- table(hints_clndata$RaceEthn5)
+  # Create the percentages for the pie chart
+  ethn_percent <- round(100 * ethn_counts/sum(ethn_counts), 1) 
+  # Create a vector of colors for each slice of the pie chart
+  my_colors <- c("mediumaquamarine","mediumturquoise", "lightskyblue","steelblue1","midnightblue")
+  ethn_plot <- pie(ethn_counts, labels = ethn_percent, main = "Pie Chart of Ethnic Distribution", col = my_colors, radius = 0.8)
+  # Shift legend slightly and remove the border around it so it doesn't block the pie chart
+  legend("topright", inset = c(-0.1, 0), legend = names(ethn_counts), cex = 0.8, fill = my_colors, bty = "n")
+ # Display the pie chart
+  print(ethn_plot) 
+}
+# Execute the function using the HINTS dataset
+my_visual_func_I(hints_clndata)
+```
+
+Create a single R function that creates univariate distributions for Age and BMI
+
+```{r}
+# Create chart labels, assign colors to fill and borders, and create 10 breaks for the histogram distribution.
+my_visual_func_II <- function(hints_clndata) {
+  hist(hints_clndata$Age, main = "Histogram of Age Distribution", xlab = "Age (Years)", ylab = "Frequency", col = "thistle", border = "mediumorchid4", breaks = 10)
+# Create a new window to display both charts
+  dev.new()
+# Create chart labels and assign colors to fill and the border of the plot using the polygon() function
+  bmi_density <- density(hints_clndata$BMI, main = "BMI Density Plot")
+  plot(bmi_density, main = "BMI Density Plot")
+  polygon(bmi_density, col = "powderblue", border = "darkcyan")
+# Display the density plot
+  print(bmi_density)
+}
+# Execute the function using the HINTS dataset
+my_visual_func_II(hints_clndata)
+```
+
