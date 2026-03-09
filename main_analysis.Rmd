@@ -57,8 +57,17 @@ barplot(qc,
         xlab = "QualityCare",
         ylab = "Count")
 # Display the bar plot
+qc
 ```
 
+```{r}
+# Create a RaceEthn5 pie chart
+race <- table(hints_clndata$RaceEthn5)
+pie(race,
+    main = "Distribution of RaceEthn5")
+# Display pie chart
+race
+```
 
 ### ggplot2 Visualization
 
