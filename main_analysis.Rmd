@@ -49,6 +49,36 @@ hints_clndata <- subset(hints_data, select = c(HHID, PersonID, Age, AvgDrinksPer
 ## Descriptive Analysis & Function Writing 
 
 ### Statistical Summaries
+```{r}
+library(dplyr)
+#load packages
+hints <- read.csv("data/HINTSData_2020_clean.csv")
+#import data
+head(hints)
+#view first row
+cont_vars <- hints %>%
+  select(Age, AvgDrinksPerWeek, WeeklyMinutesModerateExercise, BMI)
+#select only continuous variables
+summary(cont_vars)
+#calculate 5-number summary
+mean(hints$Age, na.rm = TRUE)
+mean(hints$AvgDrinksPerWeek, na.rm = TRUE)
+mean(hints$WeeklyMinutesModerateExercise, na.rm = TRUE)
+mean(hints$BMI, na.rm = TRUE)
+#calculate mean
+sd(hints$Age, na.rm = TRUE)
+sd(hints$AvgDrinksPerWeek, na.rm = TRUE)
+sd(hints$WeeklyMinutesModerateExercise, na.rm = TRUE)
+sd(hints$BMI, na.rm = TRUE)
+#calculate standard deviation
+var(hints$Age, na.rm = TRUE)
+var(hints$AvgDrinksPerWeek, na.rm = TRUE)
+var(hints$WeeklyMinutesModerateExercise, na.rm = TRUE)
+var(hints$BMI, na.rm = TRUE)
+#calculate variance
+#interpretation: the average age of respondents was 55.6 years, with a standard deviation of 16.58, which indicates that the sample includes many middle-aged and older adults. Participants reported an average of 3.36 alcoholic drinks per week, with a median of 0 drinks, suggesting that many respondents don’t drink alcohol. The mean weekly moderate exercise was 161.8 minutes, but the large standard deviation showed high variability in exercise levels. The average BMI was 28.61, which falls in the overweight range, suggesting many participants may be at risk for weight-related health conditions.
+
+```
 
 ```{r}
 
@@ -138,6 +168,40 @@ var(BMI)
 
 
 
+```
+```{r}
+#part 3
+my_summary_func <- function(data, variable)
+
+  values <- data[[variable]]
+
+  results <- list(
+    Minimum = min(values, na.rm = TRUE),
+    Q1 = quantile(values, 0.25, na.rm = TRUE),
+    Median = median(values, na.rm = TRUE),
+    Q3 = quantile(values, 0.75, na.rm = TRUE),
+    Maximum = max(values, na.rm = TRUE),
+    Mean = mean(values, na.rm = TRUE),
+    SD = sd(values, na.rm = TRUE),
+    Variance = var(values, na.rm = TRUE)
+  )
+
+  return(results)
+#writing the functions
+
+```
+```{r}
+my_summary_func(hints, "Age")
+
+my_summary_func(hints, "AvgDrinksPerWeek")
+
+my_summary_func(hints, "WeeklyMinutesModerateExercise")
+
+my_summary_func(hints, "BMI")
+#running the function on variables
+```
+```{r}
+#interpretation:The custom function my_summary_func was created to automate the calculation of descriptive statistics for continuous variables. The function returns the five-number summary, mean, standard deviation, and variance for any selected variable in the data set. This allows the same statistical summaries to be quickly generated for multiple variables such as Age, BMI, alcohol consumption, and exercise levels.
 ```
 
 
